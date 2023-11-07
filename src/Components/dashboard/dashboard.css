@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+}
+
+/* dashboard.css */
+.card-animation-enter {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  
+  .card-animation-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .card-animation-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .card-animation-exit-active {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 300ms, transform 300ms;
+  }
+  

@@ -1,0 +1,23 @@
+.card {
+    /* display: flex; */
+    /* flex-direction: row; */
+    color: white;
+    background-color:white;
+    width: 200px;
+    height: 400px;
+    margin-left: 200px;
+}
+
+/* .heading{
+    justify-content: space-between;
+} */
+
+.display-row {
+    font-size: 20px;
+    display: flex;
+    justify-content: column;
+}
+
+.available-key{
+    background-color: #18191d;
+}
