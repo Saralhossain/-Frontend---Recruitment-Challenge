@@ -2,6 +2,12 @@
     display: flex;
 }
 
+.dashboard{
+  height: 100vh;
+  overflow: hidden;
+  flex: 1;
+}
+
 /* dashboard.css */
 .card-animation-enter {
     opacity: 0;
@@ -33,7 +39,7 @@ transition: transform 0.3s ease-in-out;
 
 .card {
 flex: 0 0 auto;
-width: 100%; /* Adjust the width based on your card's size */
+width: 30%; /* Adjust the width based on your card's size */
 margin-right: 10px; /* Adjust the margin for spacing between cards */
 transition: transform 0.3s ease-in-out;
 }

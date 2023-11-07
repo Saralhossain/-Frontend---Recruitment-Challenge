@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useState , useEffect } from 'react';
 import Tabbar from '../tabBar/Tabbar';
 import './dashboard.css';
 import Card from '../card/Card';
@@ -6,11 +6,15 @@ import { array, Item } from '../../Helper/data';
 import { MdKeyboardArrowRight , MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { FaArrowUp } from "react-icons/fa6";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Metaplex, keypairIdentity, bundlrStorage } from "@metaplex-foundation/js";
+import { Connection, clusterApiUrl, PublicKey, Keypair } from "@solana/web3.js"; // Import PublicKey here
+
 
 
 function Dashboard() {
+  //Handling Slider Animation 
+  const [nfts , setNfts] = useState(null);
   const [arrayState, setArrayState] = useState([...array]);
-
   const handleNextClick = () => {
     setArrayState((prevArrayState) => {
       const newArray = [...prevArrayState];
@@ -19,7 +23,6 @@ function Dashboard() {
       return newArray;
     });
   };
-
   const handlePrevClick = () => {
     setArrayState((prevArrayState) => {
       const newArray = [...prevArrayState];
@@ -27,6 +30,31 @@ function Dashboard() {
       newArray.unshift(lastCard);
       return newArray;
     });
+  };
+  //metaplex sdk
+  useEffect(()=>{
+    fetchNFTs();
+  }, []);
+
+  const fetchNFTs = async () => {
+    try {
+      // const connection = new Connection('https://api.mainnet-beta.solana.com');
+      const owner = new PublicKey("ATe3DymKZadrUoqAMn7HSpraxE4gB88uo1L9zLGmzJeL");
+      const connection = new Connection(clusterApiUrl('devnet'));
+      const wallet = Keypair.generate();
+      const metaplex = Metaplex.make(connection)
+        .use(keypairIdentity(wallet))
+        .use(bundlrStorage());
+      const myNfts = await metaplex.nfts().findAllByOwner({
+        owner
+      });
+      const firstThreeNFTs = myNfts.slice(0, 3);
+      console.log("3 nfts : ", firstThreeNFTs);
+      // setNfts(firstThreeNFTs);
+      console.log('fetched data : ',myNfts);
+    } catch (error) {
+      console.error("Error fetching NFTs:", error);
+    }
   };
 
   return (
