@@ -22,6 +22,20 @@
   .card-animation-exit-active {
     opacity: 0;
     transform: translateX(-100%);
-    transition: opacity 300ms, transform 300ms;
+    transition: opacity 400ms, transform 300ms;
   }
+
+  /* dashboard.css */
+.card-slider {
+display: flex;
+transition: transform 0.3s ease-in-out;
+}
+
+.card {
+flex: 0 0 auto;
+width: 100%; /* Adjust the width based on your card's size */
+margin-right: 10px; /* Adjust the margin for spacing between cards */
+transition: transform 0.3s ease-in-out;
+}
+  
   
