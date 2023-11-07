@@ -7,7 +7,7 @@ import { MdKeyboardArrowRight , MdOutlineKeyboardArrowLeft } from "react-icons/m
 import { FaArrowUp } from "react-icons/fa6";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Metaplex, keypairIdentity, bundlrStorage } from "@metaplex-foundation/js";
-import { Connection, clusterApiUrl, PublicKey, Keypair } from "@solana/web3.js"; // Import PublicKey here
+import { Connection, clusterApiUrl, PublicKey, Keypair } from "@solana/web3.js"; 
 
 
 
@@ -38,9 +38,9 @@ function Dashboard() {
 
   const fetchNFTs = async () => {
     try {
-      // const connection = new Connection('https://api.mainnet-beta.solana.com');
-      const owner = new PublicKey("ATe3DymKZadrUoqAMn7HSpraxE4gB88uo1L9zLGmzJeL");
-      const connection = new Connection(clusterApiUrl('devnet'));
+      // const connection = new Connection('https://api.testnet.solana.com');
+      const owner = new PublicKey("narfn77NVRRfa4frg1KZykyFrJ1f9eMGnzXeMn2ja1X");
+      const connection = new Connection(clusterApiUrl('testnet'));
       const wallet = Keypair.generate();
       const metaplex = Metaplex.make(connection)
         .use(keypairIdentity(wallet))
@@ -94,18 +94,15 @@ function Dashboard() {
           </div>
 
           {/* CardCoponent */}
-
+          <div className="card-slider px-12">
           <TransitionGroup className="flex flex-wrap items-center">
-            {arrayState.map((item: Item, index) => (
-              <CSSTransition
-                key={item.id}
-                classNames="card-animation"
-                timeout={300}
-              >
+            {arrayState.map((item, index) => (
+              <CSSTransition key={item.id} classNames="card-animation" timeout={300}>
                 <Card key={item.id} item={item} />
               </CSSTransition>
             ))}
           </TransitionGroup>
+        </div>
 
 
 
