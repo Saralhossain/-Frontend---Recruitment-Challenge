@@ -6,6 +6,18 @@ export type Item = {
     mint_address: string;
     token_address: string;
   };
+
+export type Nfts = { 
+amount : number,
+decimals : number,
+owner: string,
+priceUsdt: number,
+tokenAddress:string,
+tokenIcon: string,
+tokenName:string,
+tokenSymbol:string,
+value: number
+}
   
 export const array: Item[] = [
 {
